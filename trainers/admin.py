@@ -1,3 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.
+from trainers.models import Trainers
+
+
+admin.site.register(Trainers)
