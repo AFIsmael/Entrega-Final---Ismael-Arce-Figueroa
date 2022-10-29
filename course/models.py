@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 class Course(models.Model):
     name = models.CharField(max_length=40)
