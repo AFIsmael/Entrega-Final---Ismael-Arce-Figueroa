@@ -1,0 +1,67 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Course
+{% endblock %}
+
+
+{% block my_site_Hero %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    <h1>Learning Today,<br>Leading Tomorrow</h1>
+    <h2>We are team of talented designers making websites with My Site</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'course:course-add' %}" <button type="button" class="btn btn-primary btn-lg">CREATE COURSE</button></a>
+  </div>
+</section><!-- End Hero -->
+{% endblock %}
+
+{% block my_site_main %}
+<section id="popular-courses" class="courses">
+    <div class="container" data-aos="fade-up">
+
+        {% for course in courses %}
+        <!-- Post preview-->
+        <div class="post-preview">
+            <h2 class="post-title">Este es el curso de {{ course.name }}</h2>
+            <h3 class="post-subtitle">Que tiene el código: {{ course.code }}</h3>
+            <p class="post-meta">
+                Creado por
+                <a href="#!">Start Bootstrap</a> 
+                en {{ course.created_at }}
+            </p>
+        </div>
+        <!-- Divider-->
+        <hr class="my-4" />
+    {% endfor %}
+    <!--Pagination-->
+    <div class="container p-4">
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+                {% if courses.has_previous %}
+                    <a href="?page=1">&laquo; first</a> |
+                    <a href="?page={{ courses.previous_page_number }}">previous</a> |
+                {% endif %}
+    
+                {% if courses.paginator.num_pages > 1 %}
+                <span class="current">
+                    Page {{ courses.number }} of {{ courses.paginator.num_pages }} |
+                </span>
+                {% endif %}
+    
+                {% if courses.has_next %}
+                    <a href="?page={{ courses.next_page_number }}">next</a> |
+                    <a href="?page={{ courses.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</section>
+{% endblock %}

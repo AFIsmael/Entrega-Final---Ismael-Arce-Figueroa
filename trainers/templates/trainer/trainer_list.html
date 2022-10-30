@@ -1,0 +1,38 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Trainer
+{% endblock %}
+
+{% block my_site_Hero %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    <h1>Learning Today,<br>Leading Tomorrow</h1>
+    <h2>We are team of talented designers making websites with My Site</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'trainer:trainer-add' %}" <button type="button" class="btn btn-primary btn-lg">CREATE TRAINER</button></a>
+  </div>
+</section><!-- End Hero -->
+{% endblock %}
+
+{% block my_site_main %}
+<section id="trainers" class="trainers">
+    <div class="container" data-aos="fade-up">
+
+        {% for trainer in trainers %}
+        <!-- Post preview-->
+        <div class="post-preview">
+            <h2 class="post-title">Trainer: {{ trainer.name }}  {{ trainer.last_name }}</h2>
+            <h3 class="post-subtitle">Email: {{ trainer.email }}</h3>
+        </div>
+        <!-- Divider-->
+        <hr class="my-4" />
+    {% endfor %}
+{% endblock %}
