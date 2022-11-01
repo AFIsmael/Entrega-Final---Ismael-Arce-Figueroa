@@ -1,0 +1,42 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Student
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'home/css/student.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block my_site_Hero %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    <h1 align="right">Learning Today,<br>Leading Tomorrow</h1>
+    <h2 align="right">Become a new Student</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <a href="{% url 'student:student-add' %}" <button type="button" class="btn btn-primary btn-lg">STUDENT REGISTRATION</button></a>
+  </div>
+</section><!-- End Hero -->
+{% endblock %}
+
+{% block my_site_main %}
+<section id="students" class="students">
+    <div class="container" data-aos="fade-up">
+
+        {% for student in students %}
+        <!-- Post preview-->
+        <div class="post-preview">
+            <h2 class="post-title">Student: {{ student.name }}  {{ student.last_name }}</h2>
+            <h3 class="post-subtitle">Email: {{ student.email }}</h3>
+        </div>
+        <!-- Divider-->
+        <hr class="my-4" />
+    {% endfor %}
+{% endblock %}
