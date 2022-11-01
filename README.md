@@ -67,32 +67,40 @@ Ingrese `Username`, `Email address` y `Password`
 
 ## Buscar un curso 
 
-- En home encontraremos un buscardor del listado de cursos disponible, solo hace falta ingresar alguno de los datos solicitado.
-```bash
-http://127.0.0.1:8000/create_family/<str:name>/<str:last_name>/<int:dni>/<str:date_birth>
-```
+- En home encontraremos un buscardor del listado de cursos disponibles, solo hace falta ingresar alguno de los datos solicitados.
+
+[![search.png](https://i.postimg.cc/T3Fk4Cxy/search.png)](https://postimg.cc/w15ct57H) 
 
 
 ## visualizar la lista completa de cursos o crear uno nuevo.
 
-- navegar a la pagina  "Courses" en la barra de navegacion del blog
-
-```bash
-http://127.0.0.1:8000/family/relatives
-```
-
+- navegar a la pagina  "Courses" en la barra de navegacion del blog  
 - ahi encontraras la lista completa de cursos, y trendras la posibilidad de crear uno nuevo simplemente clickeando en el boton "NEW COURSE"
+
+
+[![course.png](https://i.postimg.cc/sD9Q8XR5/course.png)](https://postimg.cc/JG0zHR0h)
+
+
+
+
 ## crear un nuevo Profesor/Entrenador
 
-- navegar a la pagina  "Trainers" en la barra de navegacion del blog.
-
-
+- navegar a la pagina  "Trainers" en la barra de navegacion del blog.  
 - veras a los Trainers registrados y tendras la posibilidad de registrar un nuevo, simplemente clickeando en el boton "TRAINER REGISTRATION"
+
+
+[![trainers.png](https://i.postimg.cc/fRmH1YRB/trainers.png)](https://postimg.cc/ZWYFdB3d)
+
+
 
 ## crear un nuevo Estudiante
 
-- navegar a la pagina  "Students" en la barra de navegacion del blog.
-
+- navegar a la pagina  "Students" en la barra de navegacion del blog.  
 - tendras la posibilidad de registrar un nuevo estudiante, simplemente clickeando en el boton "STUDENT REGISTRATION"
+
+[![student.png](https://i.postimg.cc/YCHVrdVJ/student.png)](https://postimg.cc/7fKXXnqV)
+
+
+
 
 
