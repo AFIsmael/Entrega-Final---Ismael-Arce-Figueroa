@@ -33,8 +33,11 @@
   <link href="{% static 'home/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
   <link href="{% static 'home/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
 
+
+  {%block css %}
   <!-- Template Main CSS File -->
   <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+  {% endblock %}
 
   <!-- =======================================================
   * Template Name: Mentor - v4.9.1
@@ -57,8 +60,9 @@
         <ul>
           <li><a class="active" href="{% url 'home:index' %}">Home</a></li>
           <li><a href="{% url 'course:course-list' %}">Courses</a></li>
+          <!--<li><a href="{% url 'course:homework-list' %}">Homeworks</a></li>-->
           <li><a href="{% url 'trainer:trainer-list' %}">Trainers</a></li>
-          <li><a href="{% url 'course:homework-list' %}">Homeworks</a></li>
+          <li><a href="{% url 'student:student-list' %}">Students</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->

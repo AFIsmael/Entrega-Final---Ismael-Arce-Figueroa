@@ -5,19 +5,23 @@
 Trainer
 {% endblock %}
 
+{% block css %}
+<link href="{% static 'home/css/trainer.css' %}" rel="stylesheet">
+{% endblock %}
+
 {% block my_site_Hero %}
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex justify-content-center align-items-center">
   <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-    <h1>Learning Today,<br>Leading Tomorrow</h1>
-    <h2>We are team of talented designers making websites with My Site</h2>
+    <h1 align="right">Learning Today,<br>Leading Tomorrow</h1>
+    <h2 align="right">Become a new trainer</h2>
     <br>
     <br>
     <br>
     <br>
     <br>
     <br>
-    <a href="{% url 'trainer:trainer-add' %}" <button type="button" class="btn btn-primary btn-lg">CREATE TRAINER</button></a>
+    <a href="{% url 'trainer:trainer-add' %}" <button type="button" class="btn btn-primary btn-lg">TRAINER REGISTRATION</button></a>
   </div>
 </section><!-- End Hero -->
 {% endblock %}

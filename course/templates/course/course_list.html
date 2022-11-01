@@ -5,21 +5,24 @@
 Course
 {% endblock %}
 
+{% block css %}
+<link href="{% static 'home/css/course.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block my_site_Hero %}
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex justify-content-center align-items-center">
   <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-    <h1>Learning Today,<br>Leading Tomorrow</h1>
+    <h1 align="right">Learning Today,<br>Leading Tomorrow</h1>
     <br>
-    <h2>Select or Create you new Course it´s more easy whit My Site </h2>
-    <br>
-    <br>
+    <h2 align="right">Select or Create your new Course is easier with My Site </h2>
     <br>
     <br>
     <br>
     <br>
-    <a href="{% url 'course:course-add' %}" <button type="button" class="btn btn-primary btn-lg">CREATE COURSE</button></a>
+    <br>
+    <br>
+    <a href="{% url 'course:course-add' %}" <button type="button" class="btn btn-primary btn-lg">NEW COURSE</button></a>
   </div>
 </section><!-- End Hero -->
 {% endblock %}
