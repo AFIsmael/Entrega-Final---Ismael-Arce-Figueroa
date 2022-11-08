@@ -9,10 +9,10 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from course.forms import CommentForm
 from course.forms import CourseForm
-from course.forms import TaskworkForm
+from course.forms import TaskForm
 from course.models import Comment
 from course.models import Course
-from course.models import Taskwork
+from course.models import Task
 
 
 class CourseListView(ListView):
@@ -101,6 +101,11 @@ class CommentDeleteView(LoginRequiredMixin, DeleteView):
     def get_success_url(self):
         course = self.object.course
         return reverse("course:course-detail", kwargs={"pk": course.id})
+
+
+class TaskListView(ListView):
+    model = Task
+    paginate_by = 4
 
 
 
