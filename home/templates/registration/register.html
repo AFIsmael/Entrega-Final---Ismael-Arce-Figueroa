@@ -2,30 +2,39 @@
 {% load static %}
 
 {% block my_blog_title %}
-Register
+Login
 {% endblock %}
 
-{% block my_blog_header %}
-<header class="masthead" style="background-image: url('/static/home/assets/img/home-bg.jpg')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-15 col-lg-16 col-xl-14">
-                <div class="site-heading">
-                    <h1>Registrar Nuevo Usuario</h1>
-                    <span class="subheading">My blog CoderHouse</span>
+{% block my_site_Hero %}
+<br>
+<br>
+<br>
+
+{% load crispy_forms_tags %}
+<section id="Login" class="container" >
+    <div class="row my-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="car">
+                <div class="card-body">
+                    <div class="border p-3 bg-white">
+                        <h4>User Registration</h4>
+                        <hr>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                        <hr>
+                            <input class="btn btn-primary" type="submit" value="send">
+                        </form>
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
-</header>
+</section>
 {% endblock %}
 
-{% block my_blog_content %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn btn-primary" value="Registrar usuario" />
-</form>
+{% block my_site_main %}
 
 {% endblock %}

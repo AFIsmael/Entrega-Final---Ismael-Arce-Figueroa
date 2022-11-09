@@ -6,23 +6,27 @@ from home.models import Avatar
 
 class UserRegisterForm(UserCreationForm):
 
-    username = forms.CharField(label="username", min_length=3)
-    first_name = forms.CharField(label="Name", min_length=3)
-    last_name = forms.CharField(label="Last name", min_length=3)
-    email = forms.EmailField(label="Email")
-    password1 = forms.CharField(label="Password", widget=forms.PasswordInput)
-    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput)
-
-    class Meta:
-        model = User
-        fields = [
-            "username",
-            "first_name",
-            "last_name",
-            "email",
-            "password1",
-            "password2",
-        ]
+     email = forms.EmailField(
+         label= 'Email',
+         required=True,
+     )
+     username = forms.CharField(
+         label = 'Username',
+         required=True,
+     )
+     password1 = forms.CharField(
+         label = "Password",
+         required=True,
+         widget=forms.PasswordInput,
+     )
+     password2 = forms.CharField(
+         label = "Confirm password",
+         required=True,
+         widget=forms.PasswordInput,
+    )
+class Meta:
+    model = User
+    fields = ['username', 'email', 'password1', 'password2']
 
 
 class UserUpdateForm(UserChangeForm):

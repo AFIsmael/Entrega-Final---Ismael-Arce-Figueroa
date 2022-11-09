@@ -72,7 +72,7 @@
           <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'home:user-update' %}">Update User</a></li>
           <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'logout' %}">Logout - {{ user.username }}</a></li>
           {% else %}
-          <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}">Login - {{ user.username }}</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}">Login</a></li>
           {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -85,8 +85,8 @@
   <section id="hero" class="d-flex justify-content-center align-items-center">
     <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
       {% if user.is_authenticated %}
-      <h3>{{ user.first_name }} {{ user.last_name }}</h3>
-      <h4>Welcome!</h4>
+      <h1>{{ user.username }}</h1>
+      <h2>Welcome!</h2>
       {% else %}
       <h1>Learning Today,<br>Leading Tomorrow</h1>
       <h2>We are team of talented designers making websites with My Site</h2>
