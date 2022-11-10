@@ -1,0 +1,55 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+<!-- ckeditor-->
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+<!-- ckeditor-->
+
+{% block my_blog_title %}
+Task Create-Update
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'home/css/task.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block my_site_Hero %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    <h2>Learning Today,<br>Leading Tomorrow</h2>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>Create or Edit your Task</h1>
+  </div>
+</section><!-- End Hero -->
+{% endblock %}
+
+{% block my_site_main %}
+{% load crispy_forms_tags %}
+<section id="courses" class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="car">
+        <div class="card-body">
+          <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form.media }} <!-- ckeditor-->
+              {{ form|crispy }}
+              <hr>
+              <input type="submit" class="btn btn-primary" value="Save" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

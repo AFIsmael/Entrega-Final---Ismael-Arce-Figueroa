@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block my_blog_title %}
-Course
+Course List
 {% endblock %}
 
 {% block css %}
@@ -31,19 +31,22 @@ Course
 <section id="popular-courses" class="courses">
     <div class="container" data-aos="fade-up">
 
-        {% for course in courses %}
+        {% for course in course_list %}
         <!-- Post preview-->
         <div class="post-preview">
+          <a href="{% url 'course:course-detail' course.id %}">
             <h2 class="post-title">This is the course of {{ course.name }}</h2>
             <h3 class="post-subtitle">Course code: {{ course.code }}</h3>
-            <p class="post-meta">
-                Creado por
-                <a href="#!">Start Bootstrap</a> 
-                en {{ course.created_at }}
-            </p>
+          </a> 
+          <p class="post-meta">
+              Created by
+              <span style="color: #0b4956;" href="">{{ course.owner.username }}</span>
+              ( {{ course.created_at }} )
+          </p>
         </div>
         <!-- Divider-->
         <hr class="my-4" />
     {% endfor %}
+    </div>
 </section>
 {% endblock %}

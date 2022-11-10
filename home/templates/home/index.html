@@ -21,6 +21,9 @@
   <link href="{% static 'home/img/favicon.png' %}" rel="icon">
   <link href="{% static 'home/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
+  <!-- Font Awesome icons -->
+  <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
@@ -95,7 +98,25 @@
     </div>
   </section><!-- End Hero -->
   {% endblock %}
-
+  <br>
+  <br>
+  <br>
+  <!-- Messages-->
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+                <!-- Divider-->
+                <hr class="my-4" />
+            {% endif %}
+        </div>
+    </div>
+  </div>
 
   {% block my_site_main %}
   <main id="main">

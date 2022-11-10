@@ -1,0 +1,55 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Task detail
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'home/css/task.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block my_site_Hero %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    <h1 align="right">Learning Today,<br>Leading Tomorrow</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>{{ task.name }} - Delivery Details </h1>
+    <br>
+    <br>
+    <a href="{% url 'course:task-add' %}" <button type="button" class="btn btn-primary btn-lg">NEW TASK</button></a>
+  </div>
+</section><!-- End Hero -->
+{% endblock %}
+
+{% block my_site_main %}
+<section id="popular-courses" class="courses">
+    <div class="container" data-aos="fade-up">
+
+        <div class="post-preview">
+            <h2 class="post-subtitle">Delivery deadline: {{ task.due_date }}</h2>
+            <h5>
+                Delivered:
+                {% if task.is_delivered %}
+                    YES!
+                {% else %}
+                    No
+                {% endif%}
+            </h5>
+            <p style="text-align: center">
+                    <a href="{% url 'course:task-update' task.id %}">
+                        <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Curso
+                    </a>
+                    &ensp; | &ensp;
+                    <a href="{% url 'course:task-delete' task.id %}">
+                        <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Curso
+                    </a>
+            </p>          
+            <!-- Divider-->
+            <hr class="my-4" />
+</section>
+{% endblock %}

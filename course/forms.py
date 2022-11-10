@@ -36,7 +36,7 @@ class CourseForm(forms.ModelForm):
         widget=CKEditorWidget(),
     )
 
-    image = forms.ImageField( required= False)
+    image = forms.ImageField()
 
     class Meta:
         model = Course

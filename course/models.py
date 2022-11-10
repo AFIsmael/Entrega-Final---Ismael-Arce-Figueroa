@@ -9,7 +9,7 @@ class Course(models.Model):
     code = models.IntegerField(null=False, blank=False)
     description = RichTextField(null=True, blank=True)
     image = models.ImageField(upload_to='course', null=True, blank=True)
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User,null=True, on_delete=models.CASCADE)
     comments = models.ManyToManyField(
         User, through="Comment", related_name="comments_owned"
     )

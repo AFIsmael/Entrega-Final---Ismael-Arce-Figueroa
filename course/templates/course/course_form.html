@@ -1,8 +1,15 @@
 {% extends "home/index.html" %}
 {% load static %}
 
+<!-- ckeditor-->
+{% block extrahead %}
+<script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+{{ block.super }}
+{% endblock %}
+<!-- ckeditor-->
+
 {% block my_blog_title %}
-Course
+Course Create-Update
 {% endblock %}
 
 {% block css %}
@@ -16,22 +23,33 @@ Course
     <h2>Learning Today,<br>Leading Tomorrow</h2>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <h1>Create or Edit your course</h1>
   </div>
 </section><!-- End Hero -->
 {% endblock %}
 
 {% block my_site_main %}
-<section id="popular-courses" class="courses">
-    <div class="container" data-aos="fade-up">
-    <div>
-        <form action="" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <input type="submit" class="btn btn-primary" value="Save" />
-        </form>
+{% load crispy_forms_tags %}
+<section id="courses" class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="car">
+        <div class="card-body">
+          <form action="" method="POST" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{ form.media }} <!-- ckeditor-->
+              {{ form|crispy }}
+              <hr>
+              <input type="submit" class="btn btn-primary" value="Save" />
+          </form>
+        </div>
+      </div>
     </div>
-    <!-- Divider-->
-    <hr class="my-4" />
+  </div>
 </section>
 {% endblock %}

@@ -1,0 +1,93 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Course detail
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'home/css/course.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block my_site_Hero %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center">
+  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+    <h1 align="right">Learning Today,<br>Leading Tomorrow</h1>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h1>{{ course.name }}</h1>
+    <br>
+    <br>
+    <a href="{% url 'course:course-add' %}" <button type="button" class="btn btn-primary btn-lg">NEW COURSE</button></a>
+  </div>
+</section><!-- End Hero -->
+{% endblock %}
+
+{% block my_site_main %}
+<section id="popular-courses" class="courses">
+    <div class="container" data-aos="fade-up">
+
+        <div class="post-preview">
+            <h3 class="post-subtitle">Code: {{ course.code }}</h3>
+            <p class="post-meta">
+                Created by
+                <span style="color: #0b4956;" href="">{{ course.owner.username }}</span>
+                ( {{ course.created_at }} )
+                <br>
+                Last Update ( {{ course.updated_at }} )
+            </p>
+        
+            <!-- Image -->
+            {% if course.image %}
+                <div style="text-align: center;">
+                    <img height="250px" src="{{ course.image.url }}">
+                </div>
+            {% endif %}
+        
+            <!-- Description -->
+            <p class="card-text ">{{ course.description|safe }}</p> <!-- ckeditor-->
+            
+            <hr>
+        
+            <!-- Update-Delete link only for the owner -->
+            {% if user == course.owner or user.is_superuser %}
+                <p style="text-align: center">
+                    <a href="{% url 'course:course-update' course.id %}">
+                        <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Curso
+                    </a>
+                    &ensp; | &ensp;
+                    <a href="{% url 'course:course-delete' course.id %}">
+                        <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Curso
+                    </a>
+                </p>
+            {% endif %}
+            
+            <!-- Divider-->
+            <hr class="my-4" />
+        
+            <!-- Comment creation -->
+            <form method="POST" action="{% url 'course:comment-create' course.id %}">
+                {% csrf_token %}
+                {{ comment_form }}
+            <input type="submit" value="Post comment...">
+            </form>
+            {% if not comments %}
+                <p></p>
+            {% endif %}
+        
+            <!-- Comments list -->
+            {% for comment in comments %}
+                <p> {{ comment.text }}
+                    ({{ comment.owner.username }} | {{ comment.updated_at }})
+                    {% if user == comment.owner or user.is_superuser %}
+                    <a href="{% url 'course:comment-delete' comment.id %}"> <i class="fa-sharp fa-solid fa-trash" style="color: #881a1a;"></i></i></a>
+                    {% endif %}
+                </p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
