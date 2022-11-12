@@ -76,8 +76,8 @@ class CourseUpdateView(LoginRequiredMixin, UpdateView):
         course_id = self.kwargs["pk"]
         return reverse_lazy("course:course-detail", kwargs={"pk": course_id})
 
-    def post(self):
-        pass
+    # def post(self):
+    #     pass
 
 
 class CourseDeleteView(LoginRequiredMixin, DeleteView):

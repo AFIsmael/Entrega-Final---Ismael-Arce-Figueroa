@@ -56,11 +56,11 @@ Course detail
             {% if user == course.owner or user.is_superuser %}
                 <p style="text-align: center">
                     <a href="{% url 'course:course-update' course.id %}">
-                        <i class="fa fa-pencil" style="color: #1c1c91;"></i> Editar Curso
+                        <i class="fa-solid fa-pen-fancy" style="color: #0896e7;"></i> Editar Curso
                     </a>
                     &ensp; | &ensp;
                     <a href="{% url 'course:course-delete' course.id %}">
-                        <i class="fa fa-trash" style="color: #881a1a;"></i> Eliminar Curso
+                        <i class="fa fa-trash" style="color: #e20c0c;"></i> Eliminar Curso
                     </a>
                 </p>
             {% endif %}
