@@ -68,14 +68,15 @@
           <li><a href="{% url 'course:task-list' %}">Task</a></li>
           <li><a href="{% url 'trainer:trainer-list' %}">Trainers</a></li>
           <li><a href="{% url 'student:student-list' %}">Students</a></li>
-
-          <div class="topbar-divider d-none d-sm-block"></div>
-
           {% if user.is_authenticated %}
-          <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'home:user-update' %}">Update User</a></li>
-          <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'logout' %}">Logout - {{ user.username }}</a></li>
+          <li class="dropdown"><a href="#"><span>{{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="{% url 'home:user-update' %}">Update User</a></li>
+              <li><a href="{% url 'logout' %}">Logout - {{ user.username }}</a></li>
+            </ul>
+          </li>
           {% else %}
-          <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
           {% endif %}
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
@@ -196,7 +197,7 @@
 
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
-      <div class="container aos-init aos-animate" data-aos="fade-up">
+      <div class="container" data-aos="fade-up">
 
         <div class="row" data-aos="zoom-in" data-aos-delay="100">
           <div class="col-lg-3 col-md-4 mt-4">

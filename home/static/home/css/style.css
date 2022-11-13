@@ -703,11 +703,10 @@ section {
 # Features
 --------------------------------------------------------------*/
 .features {
-  padding-top: 10px;
+  padding-top: 0px;
 }
 
 .features .icon-box {
-  margin-top: 10px;
   display: flex;
   align-items: center;
   padding: 20px;
@@ -1591,3 +1590,14 @@ section {
   color: #fff;
   text-decoration: none;
 }
+
+.topbar .topbar-divider {
+  width: 0;
+  border-right: 1px solid #e3e6f0;
+  height: calc(4.375rem - 2rem);
+  margin: auto 1rem;
+}
+
+.bg-custom-2 {
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  }

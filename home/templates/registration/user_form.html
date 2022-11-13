@@ -21,13 +21,13 @@ Update User
             <div class="car">
                 <div class="card-body">
                     <div class="border p-3 bg-white">
-                        <h3>Usuario: {{user.username}} <br> Nombre: {{user.first_name}} {{user.last_name}}</h3>
+                        <h3>User: {{user.username}} <br> Name: {{user.first_name}} {{user.last_name}}</h3>
                         <hr>
                         <form action="" method="POST">
                             {% csrf_token %}
                             {{ form|crispy }}
                         <hr>
-                        <input type="submit" class="btn btn-outline-success" value="Guardar usuario" />
+                        <input type="submit" class="btn btn-outline-success" value="Save" />
                         </form>
                     </div>
                 </div>
