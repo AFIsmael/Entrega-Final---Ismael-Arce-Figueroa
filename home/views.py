@@ -16,9 +16,15 @@ from home.models import Avatar
 def index(request):
     return render(
         request=request,
-        context={},
+        context=get_avatar_url_ctx(request),
         template_name="home/index.html",
     )
+
+def get_avatar_url_ctx(request):
+    avatars = Avatar.objects.filter(user=request.user.id)
+    if avatars.exists():
+        return {"avatar_url": avatars[0].image.url}
+    return {}
 
 
 def search(request):
@@ -67,9 +73,10 @@ def user_update(request):
             return redirect("home:index")
 
     form = UserUpdateForm(model_to_dict(user))
+    avatar = get_avatar_url_ctx(request)
     return render(
         request=request,
-        context={"form": form},
+        context={"form": form, "avatar": avatar},
         template_name="registration/user_form.html",
     )
 

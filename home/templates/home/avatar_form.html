@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block my_site_title %}
-Login
+Avatar Load
 {% endblock %}
 
 {% block my_site_Hero %}
@@ -12,23 +12,26 @@ Login
 
 {% load crispy_forms_tags %}
 <section id="Login" class="container" >
+    <h1>Avatar Load</h1>
+    <h3>{{user.username}}</h3>
+    <br>
+    <a class="btn btn-outline-primary" href="{% url 'home:password-change' %}">Change Password </a>
     <div class="row my-4">
         <div class="col-md-6 offset-md-3">
             <div class="car">
                 <div class="card-body">
                     <div class="border p-3 bg-white">
-                        <h4>User Registration</h4>
+                        <h3>User: {{user.username}} <br> Name: {{user.first_name}} {{user.last_name}}</h3>
                         <hr>
-                        <form method="POST">
+                        <form action="" method="POST" enctype="multipart/form-data">
                             {% csrf_token %}
                             {{ form|crispy }}
                         <hr>
-                            <input class="btn btn-primary" type="submit" value="send">
+                        <input type="submit" class="btn btn-primary" value="Load" />
                         </form>
                     </div>
                 </div>
             </div>
-            
         </div>
     </div>
 </section>

@@ -1,9 +1,24 @@
 {% extends "home/index.html" %}
 {% load static %}
 
-{% block my_blog_title %}
+{% block my_site_title %}
 Update User
 {% endblock %}
+
+{%block css %}
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+
+<style>
+    .avatar{
+      height: 250px;
+      width: 250px;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: inline-block;
+  }
+</style>
+
+  {% endblock %}
 
 {% block my_site_Hero %}
 <br>
@@ -13,9 +28,15 @@ Update User
 {% load crispy_forms_tags %}
 <section id="Login" class="container" >
     <h1>Update User</h1>
-    <h3>My Syte</h3>
+    <h3>{{user.username}}</h3>
+    <div>
+        <img class = "avatar" height="260px" src={{avatar.avatar_url}}>
+        <div align="center">
+            <a class="btn btn-outline-primary" href="{% url 'home:password-change' %}">Change Password </a>  <a class="btn btn-outline-primary" href="{% url 'home:avatar-load' %}">Avatar Load</a>
+        </div>
+    </div>
     <br>
-    <a class="btn btn-outline-primary" href="{% url 'home:password-change' %}">Change Password </a>
+    <br>
     <div class="row my-4">
         <div class="col-md-6 offset-md-3">
             <div class="car">

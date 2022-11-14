@@ -41,8 +41,21 @@
 
   {%block css %}
   <!-- Template Main CSS File -->
-  <link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'home/css/style.css' %}" rel="stylesheet">  
+
+  <style>
+    .avatar{
+      height: 45px;
+      width: 45px;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: inline-block;
+  }
+</style>
+
   {% endblock %}
+
+  
 
   <!-- =======================================================
   * Template Name: Mentor - v4.9.1
@@ -68,8 +81,9 @@
           <li><a href="{% url 'course:task-list' %}">Task</a></li>
           <li><a href="{% url 'trainer:trainer-list' %}">Trainers</a></li>
           <li><a href="{% url 'student:student-list' %}">Students</a></li>
+          <li><a href="#"></a></li>
           {% if user.is_authenticated %}
-          <li class="dropdown"><a href="#"><span>{{ user.username }}</span> <i class="bi bi-chevron-down"></i></a>
+          <li class="dropdown"><img {% if avatar_url %} class= "avatar" height="260px" src="{{avatar_url}}"{% else %}><span>{{ user.username }}</span {% endif %}>
             <ul>
               <li><a href="{% url 'home:user-update' %}">Update User</a></li>
               <li><a href="{% url 'logout' %}">Logout - {{ user.username }}</a></li>
@@ -94,7 +108,7 @@
       {% else %}
       <h1>Learning Today,<br>Leading Tomorrow</h1>
       <h2>We are team of talented designers making websites with My Site</h2>
-      {% endif %} 
+      {% endif %}
       <a href="{% url 'course:course-list' %}" class="btn-get-started">Get Started</a>
     </div>
   </section><!-- End Hero -->
