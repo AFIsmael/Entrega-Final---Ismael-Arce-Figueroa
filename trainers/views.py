@@ -1,61 +1,65 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from trainers.models import Trainer
 from trainers.forms import TrainerForm
 
 
-def get_trainers(request):
-    trainers = Trainer.objects.all()
-    return trainers
+class TrainerListView(ListView):
+    model = Trainer
+    template_name = "trainer/trainer_list.html"
+    paginate_by = 3
 
 
-def create_trainer(request):
-    if request.method == "POST":
-        trainer_form = TrainerForm(request.POST)
-        if trainer_form.is_valid():
-            data = trainer_form.cleaned_data
-            actual_objects = Trainer.objects.filter(
-                name=data["name"],
-                last_name=data["last_name"],
-                email=data["email"],
-            ).count()
-            print("actual_objects", actual_objects)
-            if actual_objects:
-                messages.error(
-                    request,
-                    f"El trainer {data['name']} - {data['last_name']} ya está creado",
-                )
-            else:
-                trainer = Trainer(
-                    name=data["name"],
-                    last_name=data["last_name"],
-                    email=data["email"],
-                )
-                trainer.save()
-                messages.success(
-                    request,
-                    f"Trainer {data['name']} - {data['last_name']} creado exitosamente!",
-                )
+class TrainerDetailView(DetailView):
+    model = Trainer
+    template_name = "trainer/trainer_detail.html"
+    fields = ["name", "last_name", "email"]
 
-            return render(
-                request=request,
-                context={"trainers": get_trainers(request)},
-                template_name="trainer/trainer_list.html",
+
+class TrainerCreateView(LoginRequiredMixin, CreateView):
+    model = Trainer
+    template_name = "trainer/trainer_form.html"
+    success_url = reverse_lazy("trainer:trainer-list")
+
+    form_class = TrainerForm
+
+    def form_valid(self, form):
+        """Filter to avoid duplicate trainers"""
+        data = form.cleaned_data
+        actual_objects = Trainer.objects.filter(
+            name=data["name"],
+            last_name=data["last_name"],
+            email=data["email"],
+        ).count()
+        if actual_objects:
+            messages.error(
+                self.request,
+                f"The trainer {data['name']} {data['last_name']} | {data['email']} is already created",
             )
+            form.add_error("name", ValidationError("Invalid action"))
+            return super().form_invalid(form)
+        else:
+            messages.success(
+                self.request,
+                f"Trainer: {data['name']} - {data['last_name']}. successfully created!",
+            )
+            return super().form_valid(form)
 
-    trainer_form = TrainerForm(request.POST)
-    context_dict = {"form": trainer_form}
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="trainer/trainer_form.html",
-    )
 
+class TrainerUpdateView(LoginRequiredMixin, UpdateView):
+    model = Trainer
+    fields = ["name", "last_name", "email"]
 
-def trainers(request):
-    return render(
-        request=request,
-        context={"trainers": get_trainers(request)},
-        template_name="trainer/trainer_list.html",
-    )
+    def get_success_url(self):
+        trainer_id = self.kwargs["pk"]
+        return reverse_lazy("trainer:trainer-detail", kwargs={"pk": trainer_id})
+
+class TrainerDeleteView(LoginRequiredMixin, DeleteView):
+    model = Trainer
+    success_url = reverse_lazy("trainer:trainer-list")

@@ -30,7 +30,9 @@ Update User
     <h1>Update User</h1>
     <h3>{{user.username}}</h3>
     <div>
+        {% if avatar.avatar_url %}
         <img class = "avatar" height="260px" src={{avatar.avatar_url}}>
+        {% endif %}
         <div align="center">
             <a class="btn btn-outline-primary" href="{% url 'home:password-change' %}">Change Password </a> &emsp; &emsp; <a class="btn btn-outline-primary" href="{% url 'home:avatar-load' %}">Avatar Load</a>
         </div>
