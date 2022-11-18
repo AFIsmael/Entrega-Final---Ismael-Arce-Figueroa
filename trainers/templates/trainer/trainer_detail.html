@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block my_blog_title %}
-Trainer
+Trainer detail
 {% endblock %}
 
 {% block css %}
@@ -14,11 +14,12 @@ Trainer
 <section id="hero" class="d-flex justify-content-center align-items-center">
   <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
     <h1 align="right">Learning Today,<br>Leading Tomorrow</h1>
-    <h2 align="right">Become a new trainer</h2>
     <br>
     <br>
     <br>
     <br>
+    <h1>{{ trainer.name }} - {{ trainer.last_name }} </h1>
+    <span class="subheading">Trainer Detail</span>
     <br>
     <br>
     <a href="{% url 'trainer:trainer-add' %}" <button type="button" class="btn btn-primary btn-lg">TRAINER REGISTRATION</button></a>
@@ -27,19 +28,19 @@ Trainer
 {% endblock %}
 
 {% block my_site_main %}
-<section id="trainers" class="trainers">
-    <div class="container" data-aos="fade-up">
-
-        {% for trainer in trainer_list %}
-        <!-- Post preview-->
-        <div class="post-preview">
-          <a href="{% url 'trainer:trainer-detail' trainer.id %}"></a>
-            <h2 class="post-title">Trainer: {{ trainer.name }}  {{ trainer.last_name }}</h2>
-            <h3 class="post-subtitle">Email: {{ trainer.email }}</h3>
-        </div>
-        <!-- Divider-->
-        <hr class="my-4" />
-        {% endfor %}
+<section id="popular-courses" class="courses">
+    <!-- Post preview-->
+    <div class="post-preview">
+        <h3 class="post-subtitle">Email: {{ trainer.email }}</h3>
+        <p style="text-align: center">
+            <a href="{% url 'trainer:trainer-update' trainer.id %}">
+                <i class="fa fa-pencil" style="color: #1c1c91;"></i> Edit
+            </a>
+            &ensp; | &ensp;
+            <a href="{% url 'trainer:trainer-delete' trainer.id %}">
+                <i class="fa fa-trash" style="color: #881a1a;"></i> Delete 
+            </a>
+        </p>
     </div>
 </section>
 {% endblock %}

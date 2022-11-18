@@ -1,9 +1,11 @@
 from django import forms
 
+from trainers.models import Trainer
 
-class TrainerForm(forms.Form):
+class TrainerForm(forms.ModelForm):
     name = forms.CharField(
         label="Name of Trainer",
+        max_length=40,
         required=False,
         widget=forms.TextInput(
             attrs={
@@ -15,6 +17,7 @@ class TrainerForm(forms.Form):
     )
     last_name = forms.CharField(
         label="Last Name of Trainer",
+        max_length=40,
         required=False,
         widget=forms.TextInput(
             attrs={
@@ -35,3 +38,7 @@ class TrainerForm(forms.Form):
             }
         ),
     )
+
+    class Meta:
+        model = Trainer
+        fields = ["name", "last_name", "email"]
