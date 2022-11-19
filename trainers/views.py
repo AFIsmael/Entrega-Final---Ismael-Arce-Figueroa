@@ -32,6 +32,7 @@ class TrainerCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         """Filter to avoid duplicate trainers"""
         data = form.cleaned_data
+        form.instance.owner = self.request.user
         actual_objects = Trainer.objects.filter(
             name=data["name"],
             last_name=data["last_name"],
@@ -62,4 +63,5 @@ class TrainerUpdateView(LoginRequiredMixin, UpdateView):
 
 class TrainerDeleteView(LoginRequiredMixin, DeleteView):
     model = Trainer
+    template_name = "trainer/trainer_confirm_delete.html"
     success_url = reverse_lazy("trainer:trainer-list")

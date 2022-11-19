@@ -28,15 +28,23 @@ Student
 
 {% block my_site_main %}
 <section id="students" class="students">
-    <div class="container" data-aos="fade-up">
+  <div class="container" data-aos="fade-up">
 
-        {% for student in students %}
-        <!-- Post preview-->
-        <div class="post-preview">
-            <h2 class="post-title">Student: {{ student.name }}  {{ student.last_name }}</h2>
-            <h3 class="post-subtitle">Email: {{ student.email }}</h3>
-        </div>
-        <!-- Divider-->
-        <hr class="my-4" />
-    {% endfor %}
+      {% for student in student_list %}
+      <!-- Post preview-->
+      <div class="post-preview">
+        <a href="{% url 'student:student-detail' student.id %}">
+          <h2 class="post-title">student: {{ student.name }}  {{ student.last_name }}</h2>
+          <h3 class="post-subtitle">Email: {{ student.email }}</h3>
+        </a>
+        <p class="post-meta">
+          Created by
+          <span style="color: #0b4956;" href="">{{ student.owner.username }}</span>
+        </p>
+      </div>
+      <!-- Divider-->
+      <hr class="my-4" />
+      {% endfor %}
+</div>
+</section>
 {% endblock %}

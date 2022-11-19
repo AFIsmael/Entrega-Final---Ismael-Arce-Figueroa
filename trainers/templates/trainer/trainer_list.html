@@ -33,9 +33,14 @@ Trainer
         {% for trainer in trainer_list %}
         <!-- Post preview-->
         <div class="post-preview">
-          <a href="{% url 'trainer:trainer-detail' trainer.id %}"></a>
+          <a href="{% url 'trainer:trainer-detail' trainer.id %}">
             <h2 class="post-title">Trainer: {{ trainer.name }}  {{ trainer.last_name }}</h2>
             <h3 class="post-subtitle">Email: {{ trainer.email }}</h3>
+          </a>
+          <p class="post-meta">
+            Created by
+            <span style="color: #0b4956;" href="">{{ trainer.owner.username }}</span>
+          </p>
         </div>
         <!-- Divider-->
         <hr class="my-4" />

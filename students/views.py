@@ -1,64 +1,65 @@
 from django.contrib import messages
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ValidationError
+from django.urls import reverse_lazy
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from students.models import Student
 from students.forms import StudentForm
 
 
-def get_student(request):
-    students = Student.objects.all()
-    return students
+class StudentListView(ListView):
+    model = Student
+    template_name = "student/student_list.html"
+    paginate_by = 3
 
-def create_student(request):
-    if request.method == "POST":
-        student_form = StudentForm(request.POST)
-        if student_form.is_valid():
-            data = student_form.cleaned_data
-            actual_objects = Student.objects.filter(
-                name=data["name"],
-                last_name=data["last_name"],
-                email=data["email"],
-            ).count()
-            print("actual_objects", actual_objects)
-            if actual_objects:
-                messages.error(
-                    request,
-                    f"El student {data['name']} - {data['last_name']} ya está creado",
-                )
-            else:
-                student = Student(
-                    name=data["name"],
-                    last_name=data["last_name"],
-                    email=data["email"],
-                )
-                student.save()
-                messages.success(
-                    request,
-                    f"student {data['name']} - {data['last_name']} creado exitosamente!",
-                )
+class StudentDetailView(DetailView):
+    model = Student
+    template_name = "student/student_detail.html"
+    fields = ["name", "last_name", "email"]
 
-            return render(
-                request=request,
-                context={"students": get_student(request)},
-                template_name="student/student_list.html",
+
+class StudentCreateView(LoginRequiredMixin, CreateView):
+    model = Student
+    template_name = "student/student_form.html"
+    success_url = reverse_lazy("student:student-list")
+
+    form_class = StudentForm
+
+    def form_valid(self, form):
+        """Filter to avoid duplicate Students"""
+        data = form.cleaned_data
+        form.instance.owner = self.request.user
+        actual_objects = Student.objects.filter(
+            name=data["name"],
+            last_name=data["last_name"],
+            email=data["email"],
+        ).count()
+        if actual_objects:
+            messages.error(
+                self.request,
+                f"The student {data['name']} {data['last_name']} | {data['email']} is already created",
             )
+            form.add_error("name", ValidationError("Invalid action"))
+            return super().form_invalid(form)
+        else:
+            messages.success(
+                self.request,
+                f"Student: {data['name']} - {data['last_name']}. successfully created!",
+            )
+            return super().form_valid(form)
 
-    student_form = StudentForm(request.POST)
-    context_dict = {"form": student_form}
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="student/student_form.html",
-    )
+class StudentUpdateView(LoginRequiredMixin, UpdateView):
+    model = Student
+    fields = ["name", "last_name", "email"]
 
+    def get_success_url(self):
+        student_id = self.kwargs["pk"]
+        return reverse_lazy("student:student-detail", kwargs={"pk": student_id})
 
-def students(request):
-    students = Student.objects.all()
-
-    context_dict = {"students": students}
-
-    return render(
-        request=request,
-        context=context_dict,
-        template_name="student/student_list.html",
-    )
+class StudentDeleteView(LoginRequiredMixin, DeleteView):
+    model = Student
+    template_name = "student/student_confirm_delete.html"
+    success_url = reverse_lazy("student:student-list")
