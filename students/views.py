@@ -53,7 +53,7 @@ class StudentCreateView(LoginRequiredMixin, CreateView):
 
 class StudentUpdateView(LoginRequiredMixin, UpdateView):
     model = Student
-    template_name = "trainer/trainer_form.html"
+    template_name = "student/student_form.html"
     fields = ["name", "last_name", "email"]
 
     def get_success_url(self):

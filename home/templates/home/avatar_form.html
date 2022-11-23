@@ -5,17 +5,42 @@
 Avatar Load
 {% endblock %}
 
-{% block my_site_Hero %}
-<br>
-<br>
-<br>
+{%block css %}
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet">
 
+<style>
+#hero {
+  width: 100%;
+  height: 25vh;
+  background: top center;
+  position: relative;
+}
+#hero .container {
+  padding-top: 30px;
+}
+#Login{
+    padding-top: 10px;
+}
+</style>
+
+{% endblock %}
+
+{% block my_site_Hero %}
+<section id="hero" style= "background-color:hsl(142, 98%, 69%)">
+    <div class="container position-relative">
+         <div class="site-heading" >
+            <h1>Avatar load</h1>
+            <br>
+            <a class="btn btn-primary" href="{% url 'home:password-change' %}">Change Password </a>    
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block my_site_main %}
 {% load crispy_forms_tags %}
 <section id="Login" class="container" >
-    <h1>Avatar Load</h1>
-    <h3>{{user.username}}</h3>
-    <br>
-    <a class="btn btn-outline-primary" href="{% url 'home:password-change' %}">Change Password </a>
     <div class="row my-4">
         <div class="col-md-6 offset-md-3">
             <div class="car">
@@ -35,9 +60,4 @@ Avatar Load
         </div>
     </div>
 </section>
-{% endblock %}
-
-
-{% block my_site_main %}
-
 {% endblock %}

@@ -2,8 +2,8 @@
 
 #hero {
     width: 100%;
-    height: 80vh;
-    background: url("../img/task-hero.jpg")!important;
+    height: 60vh;
+    background: url("../img/bg-masthead.jpg")!important;
     background-size: cover;
     position: relative;
   }

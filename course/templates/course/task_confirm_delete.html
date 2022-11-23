@@ -13,25 +13,35 @@ Task Create-Update
 {% endblock %}
 
 {% block css %}
-<link href="{% static 'home/css/task.css' %}" rel="stylesheet">
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+
+<style>
+  #hero {
+  width: 100%;
+  height: 25vh;
+  background: top center;
+  position: relative;
+  }
+  #hero .container {
+  padding-top: 30px;
+  }
+  #trainers{
+    padding-top: 10px;
+  }
+  </style>
 {% endblock %}
 
 {% block my_site_Hero %}
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex justify-content-center align-items-center">
-  <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
-    <h2>Learning Today,<br>Leading Tomorrow</h2>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <h1>{{ task.name }}</h1>
-    <span class="subheading">Delete Task</span>
+<section id="hero" style= "background-color:hsl(142, 98%, 69%)">
+  <div class="container position-relative">
+       <div class="site-heading" >
+          <h1>{{ task.name }} </h1>
+          <br>
+          <h2>Delete Task</h2>  
+      </div>
   </div>
-</section><!-- End Hero -->
+</section>
 {% endblock %}
 
 {% block my_site_main %}
