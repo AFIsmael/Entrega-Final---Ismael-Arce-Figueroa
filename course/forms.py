@@ -3,6 +3,7 @@ from django import forms
 
 from course.models import Course
 from course.models import Task
+from trainers.models import Trainer
 
 
 class CourseForm(forms.ModelForm):
@@ -39,10 +40,12 @@ class CourseForm(forms.ModelForm):
     image = forms.ImageField(
         required=False
     )
+    
+    associated_trainer = Trainer.pk
 
     class Meta:
         model = Course
-        fields = ["name", "code", "description", "image"]
+        fields = ["name", "code","associated_trainer", "description", "image"]
 
 class CommentForm(forms.Form):
     comment_text = forms.CharField(
@@ -95,7 +98,9 @@ class TaskForm(forms.ModelForm):
         label="Delivered:",
         required=False,
     )
-    course_id = Course.pk
+    
+    associated_course = Course.pk
+
     class Meta:
         model = Task
-        fields = ["name", "due_date", "is_delivered", "course_id"]
+        fields = ["name", "due_date", "is_delivered", "associated_course"]

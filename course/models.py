@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from django.core.validators import MinLengthValidator
 from django.db import models
 from ckeditor.fields import RichTextField
-
+from trainers.models import Trainer
 
 class Course(models.Model):
     name = models.CharField(max_length=40, null=False, blank=False)
@@ -10,6 +10,7 @@ class Course(models.Model):
     description = RichTextField(null=True, blank=True)
     image = models.ImageField(upload_to='course', null=True, blank=True)
     owner = models.ForeignKey(User,null=True, on_delete=models.CASCADE)
+    associated_trainer = models.ForeignKey(Trainer, null= True, blank=False, on_delete= models.CASCADE)
     comments = models.ManyToManyField(
         User, through="Comment", related_name="comments_owned"
     )
@@ -44,7 +45,7 @@ class Task(models.Model):
     name = models.CharField(max_length=40)
     due_date = models.DateField()
     is_delivered = models.BooleanField()
-    course_id = models.ForeignKey(Course, null= True, blank=False, on_delete= models.CASCADE)
+    associated_course = models.ForeignKey(Course, null= True, blank=False, on_delete= models.CASCADE)
 
     def __str__(self):
         is_delivered = "Yes" if self.is_delivered else "No"

@@ -31,7 +31,7 @@ Course detail
          <div class="site-heading" >
             <h1>{{ course.name }} </h1>
             <br>
-            <h2>Task Detail</h2> 
+            <h2>Course Detail</h2> 
             <br>    
         </div>
     </div>
@@ -44,6 +44,7 @@ Course detail
 
         <div class="post-preview">
             <h3 class="post-subtitle">Code: {{ course.code }}</h3>
+            <h3 class="post-subtitle">Trainer: {{ course.associated_trainer }}</h3>
             <p class="post-meta">
                 Created by
                 <span style="color: #0b4956;" href="">{{ course.owner.username }}</span>

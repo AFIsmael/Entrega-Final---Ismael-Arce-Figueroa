@@ -35,9 +35,9 @@ Task
         <!-- Post preview-->
         <div class="post-preview">
           <a href="{% url 'course:task-detail' task.id %}">
-            <h2 class="post-title">This is the Task {{ task.name }}</h2>
+            <h2 class="post-title">This is the Task: {{ task.name }}</h2>
             <h3 class="post-subtitle">Task due date: {{ task.due_date }}</h3>
-            <h3 class="post-subtitle">Task course: {{ task.course_id }}</h3>
+            <h3 class="post-subtitle">Associated {{ task.associated_course }}</h3>
           </a> 
         </div>
         <!-- Divider-->

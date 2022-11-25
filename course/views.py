@@ -50,13 +50,11 @@ class CourseCreateView(LoginRequiredMixin, CreateView):
         """Filter to avoid duplicate courses"""
         data = form.cleaned_data
         form.instance.owner = self.request.user
-        actual_objects = Course.objects.filter(
-            name=data["name"], code=data["code"]
-        ).count()
+        actual_objects = Course.objects.filter(code=data["code"]).count()
         if actual_objects:
             messages.error(
                 self.request,
-                f"the course {data['name']} - {data['code']} is already created",
+                f"the code course: ({data['code']}) is already created",
             )
             form.add_error("name", ValidationError("Invalid action"))
             return super().form_invalid(form)
