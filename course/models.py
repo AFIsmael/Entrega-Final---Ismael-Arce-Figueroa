@@ -44,6 +44,7 @@ class Task(models.Model):
     name = models.CharField(max_length=40)
     due_date = models.DateField()
     is_delivered = models.BooleanField()
+    course_id = models.ForeignKey(Course, null= True, blank=False, on_delete= models.CASCADE)
 
     def __str__(self):
         is_delivered = "Yes" if self.is_delivered else "No"

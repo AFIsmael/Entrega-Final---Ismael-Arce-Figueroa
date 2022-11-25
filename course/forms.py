@@ -95,7 +95,7 @@ class TaskForm(forms.ModelForm):
         label="Delivered:",
         required=False,
     )
-
+    course_id = Course.pk
     class Meta:
         model = Task
-        fields = ["name", "due_date", "is_delivered"]
+        fields = ["name", "due_date", "is_delivered", "course_id"]

@@ -119,6 +119,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         """Filter to avoid duplicate task"""
         data = form.cleaned_data
+        # form.instance.course_id = self.request.course
         actual_objects = Task.objects.filter(name=data["name"]).count()
         if actual_objects:
             messages.error(
@@ -130,7 +131,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
         else:
             messages.success(
                 self.request,
-                f"Entregable: {data['name']}. Creado exitosamente!",
+                f"Task: {data['name']}. Created!",
             )
             return super().form_valid(form)
 
