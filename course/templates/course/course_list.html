@@ -35,9 +35,9 @@ Course List
         <!-- Post preview-->
         <div class="post-preview">
           <a href="{% url 'course:course-detail' course.id %}">
-            <h2 class="post-title">This is the course of {{ course.name }}</h2>
+            <h2 class="post-title">{{ course.name }} Course</h2>
             <h3 class="post-subtitle">Course code: {{ course.code }}</h3>
-          </a> 
+          </a>
           <p class="post-meta">
               Created by
               <span style="color: #1f8a3f;" href="">{{ course.owner.username }}</span>

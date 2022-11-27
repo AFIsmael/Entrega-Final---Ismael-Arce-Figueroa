@@ -20,6 +20,12 @@ def index(request):
         template_name="home/index.html",
     )
 
+def about(request):
+    return render(
+        request=request,
+        template_name="home/about.html",
+    )
+
 def get_avatar_url_ctx(request):
     avatars = Avatar.objects.filter(user=request.user.id)
     if avatars.exists():
