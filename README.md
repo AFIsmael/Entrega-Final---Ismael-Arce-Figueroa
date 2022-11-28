@@ -2,9 +2,9 @@
 
 ### Clonar el proyecto
 ```bash
-git clone https://github.com/AFIsmael/Entrega-Intermedia---Ismael-Arce-Figueroa
+git clone https://github.com/AFIsmael/Entrega-Final---Ismael-Arce-Figueroa.git
 
-cd Entrega-Intermedia---Ismael-Arce-Figueroa
+cd Entrega-Final---Ismael-Arce-Figueroa
 
 ```
 
