@@ -1,0 +1,38 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Login
+{% endblock %}
+
+{% block my_site_Hero %}
+<br>
+<br>
+<br>
+{% load crispy_forms_tags %}
+<section id="Login" class="container">
+    <h1>Hi! Welcome</h1>
+    <h3>Please register or login</h3>
+    <br>
+    <a class="btn btn-outline-success" href="{% url 'home:user-register' %}">Register now!</a>
+    <div class="row my-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="car">
+                <div class="card-body">
+                    <div class="border p-3 bg-white">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <hr>
+                            <input type="submit" class="btn btn-primary" value="Login" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+{% block my_site_main %}
+
+{% endblock %}

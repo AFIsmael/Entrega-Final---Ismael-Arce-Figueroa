@@ -1,0 +1,66 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_blog_title %}
+Student detail
+{% endblock %}
+
+{% block css %}
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+
+<style>
+    #hero {
+    width: 100%;
+    height: 30vh;
+    background: top center;
+    position: relative;
+    }
+    #hero .container {
+    padding-top: 30px;
+    }
+    #trainers{
+      padding-top: 10px;
+    }
+    </style>
+{% endblock %}
+
+{% block my_site_Hero %}
+<!-- ======= Hero Section ======= -->
+<section id="hero" style= "background-color:hsl(142, 98%, 69%)">
+    <div class="container position-relative">
+         <div class="site-heading" >
+            <h1>{{ student.name }} {{ student.last_name }} </h1>
+            <br>
+            <h2>Student Detail</h2>  
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block my_site_main %}
+<section id="popular-courses" class="courses">
+    <div class="container" data-aos="fade-up">
+    <!-- Post preview-->
+        <div class="post-preview">
+            <h3 class="post-subtitle">Email: {{ student.email }}</h3>
+            <p class="post-meta">
+                Created by
+                <span style="color: #0b4956;" href="">{{ student.owner.username }}</span>
+                ( {{ student.created_at }} )
+            </p>
+            <!-- Update-Delete link only for the owner -->
+            {% if user == student.owner or user.is_superuser %}
+                <p style="text-align: center">
+                    <a href="{% url 'student:student-update' student.id %}">
+                        <i class="fa-solid fa-pen-fancy" style="color: #0896e7;"></i> Edit Student
+                    </a>
+                    &ensp; | &ensp;
+                    <a href="{% url 'student:student-delete' student.id %}">
+                        <i class="fa fa-trash" style="color: #e20c0c;"></i> Delete Student
+                    </a>
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}

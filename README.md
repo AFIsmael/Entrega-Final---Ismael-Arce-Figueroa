@@ -1,10 +1,19 @@
+## Este proyecto se encuentra desarrollado integramente por mi, **Ismael Arce Figueroa**.
+
+## Se trata de una pagina web utilizada como un blog de Cursos, como entrega de proyecto final del curso de Python en CoderHouse.
+## La misma fue creada a partir de los conocimientos adquiridos en el curso, utilizando varias tecnologias en ella.
+## Como ser Python - Django - html y CSS.  
+
+
+## A continuacion estan las instrucciones para poder clonar el proyecto y poder desplegarlo. Gracias por tu visita. Saludos!!!
+
 # Instrucciones para ejecutar este proyecto
 
 ### Clonar el proyecto
 ```bash
-git clone https://github.com/AFIsmael/Entrega-Intermedia---Ismael-Arce-Figueroa
+git clone https://github.com/AFIsmael/Entrega-Final---Ismael-Arce-Figueroa.git
 
-cd Entrega-Intermedia---Ismael-Arce-Figueroa
+cd Entrega-Final---Ismael-Arce-Figueroa
 
 ```
 
@@ -25,21 +34,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Activar entorno virtual
-(Windows)
-```bash
-.\venv\Scripts\activate
-```
-
-(Linux)
-```bash
-source venv/bin/activate
-```
-
-### Instalar las dependencias del proyecto
-```bash
-pip install -r requirements.txt
-```
 
 ### Se ejecuta la migración para crear la base de datos con la que trabajará nuestro proyecto de Django
 ```bash
@@ -63,6 +57,7 @@ python manage.py createsuperuser
 ```
 Ingrese `Username`, `Email address` y `Password`  
 
+<<<<<<< HEAD
 # Funcionalidades de la pagina
 
 ## Buscar un curso 
@@ -103,4 +98,8 @@ Ingrese `Username`, `Email address` y `Password`
 
 
 
+=======
+
+
+>>>>>>> local
 

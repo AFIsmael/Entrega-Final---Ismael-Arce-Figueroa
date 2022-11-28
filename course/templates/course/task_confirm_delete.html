@@ -9,7 +9,7 @@
 <!-- ckeditor-->
 
 {% block my_blog_title %}
-Update Student
+Task Create-Update
 {% endblock %}
 
 {% block css %}
@@ -36,8 +36,9 @@ Update Student
 <section id="hero" style= "background-color:hsl(142, 98%, 69%)">
   <div class="container position-relative">
        <div class="site-heading" >
-        <h1>Create or Edit <br> Student</h1>
-        <br>    
+          <h1>{{ task.name }} </h1>
+          <br>
+          <h2>Delete Task</h2>  
       </div>
   </div>
 </section>
@@ -45,23 +46,21 @@ Update Student
 
 {% block my_site_main %}
 {% load crispy_forms_tags %}
-<section id="students" class="container">
+<section id="courses" class="container">
   <div class="row">
     <div class="col-md-6">
       <div class="car">
         <div class="card-body">
           <form action="" method="POST" enctype="multipart/form-data">
-              {% csrf_token %}
-              {{ form.media }} <!-- ckeditor-->
-              {{ form|crispy }}
-              <hr>
-              <input type="submit" class="btn btn-primary" value="Save" />
+            {% csrf_token %}
+            <hr>
+            <h1>Are you sure you want to delete the task?: {{ task.name }}?</h1>
+            <input class="btn btn-danger" type="submit" value="Yes, delete.">
+            <a class="btn btn-primary" href="{% url 'course:task-list' %}" >Cancel</a>
           </form>
         </div>
       </div>
     </div>
   </div>
-    <!-- Divider-->
-    <hr class="my-4" />
 </section>
 {% endblock %}

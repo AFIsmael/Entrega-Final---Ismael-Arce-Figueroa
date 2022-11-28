@@ -1,0 +1,62 @@
+{% extends "home/index.html" %}
+{% load static %}
+
+{% block my_site_title %}
+Login
+{% endblock %}
+
+{%block css %}
+<link href="{% static 'home/css/style.css' %}" rel="stylesheet">
+
+<style>
+#hero {
+    width: 100%;
+    height: 30vh;
+    background: top center;
+    position: relative;
+  }
+  #hero .container {
+    padding-top: 30px;
+  }
+  #Login{
+      padding-top: 10px;
+  }
+  </style>
+{% endblock %}
+
+{% block my_site_Hero %}
+<section id="hero" style= "background-color:hsl(142, 98%, 69%)">
+    <div class="container position-relative">
+         <div class="site-heading" >
+            <h1>Registration</h1>
+            <h2>MY SITE</h2>    
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+
+{% block my_site_main %}
+{% load crispy_forms_tags %}
+<section id="Login" class="container" >
+    <div class="row my-4">
+        <div class="col-md-6 offset-md-3">
+            <div class="car">
+                <div class="card-body">
+                    <div class="border p-3 bg-white">
+                        <h4>User Registration</h4>
+                        <hr>
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                        <hr>
+                            <input class="btn btn-primary" type="submit" value="send">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

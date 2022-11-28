@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block my_blog_title %}
-Course
+Course List
 {% endblock %}
 
 {% block css %}
@@ -14,10 +14,7 @@ Course
 <section id="hero" class="d-flex justify-content-center align-items-center">
   <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
     <h1 align="right">Learning Today,<br>Leading Tomorrow</h1>
-    <br>
     <h2 align="right">Select or Create your new Course is easier with My Site </h2>
-    <br>
-    <br>
     <br>
     <br>
     <br>
@@ -31,41 +28,47 @@ Course
 <section id="popular-courses" class="courses">
     <div class="container" data-aos="fade-up">
 
-        {% for course in courses %}
+        {% for course in course_list %}
         <!-- Post preview-->
         <div class="post-preview">
-            <h2 class="post-title">Este es el curso de {{ course.name }}</h2>
-            <h3 class="post-subtitle">Que tiene el código: {{ course.code }}</h3>
-            <p class="post-meta">
-                Creado por
-                <a href="#!">Start Bootstrap</a> 
-                en {{ course.created_at }}
-            </p>
+          <a href="{% url 'course:course-detail' course.id %}">
+            <h2 class="post-title">{{ course.name }} Course</h2>
+            <h3 class="post-subtitle">Course code: {{ course.code }}</h3>
+          </a>
+          <p class="post-meta">
+              Created by
+              <span style="color: #1f8a3f;" href="">{{ course.owner.username }}</span>
+              ( {{ course.created_at }} )
+          </p>
         </div>
         <!-- Divider-->
         <hr class="my-4" />
     {% endfor %}
-    <!--Pagination-->
-    <div class="container p-4">
-        <div class="pagination justify-content-center">
-            <span class="step-links">
-                {% if courses.has_previous %}
-                    <a href="?page=1">&laquo; first</a> |
-                    <a href="?page={{ courses.previous_page_number }}">previous</a> |
-                {% endif %}
-    
-                {% if courses.paginator.num_pages > 1 %}
-                <span class="current">
-                    Page {{ courses.number }} of {{ courses.paginator.num_pages }} |
-                </span>
-                {% endif %}
-    
-                {% if courses.has_next %}
-                    <a href="?page={{ courses.next_page_number }}">next</a> |
-                    <a href="?page={{ courses.paginator.num_pages }}">last &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
     </div>
+    <!--Pagination Class Based Views-->
+    {% if is_paginated %}
+    <div class="container p-4">
+      <div class="pagination justify-content-center">
+        <span class="step-links">
+          {% if page_obj.has_previous %}
+          <a href="?page=1">&laquo; first</a> |
+          <a href="?page={{ course_list.previous_page_number }}">previous</a> |
+          {% endif %}
+
+          {% if page_obj.paginator.num_pages > 1 %}
+          <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} |
+          </span>
+          {% endif %}
+
+          {% if page_obj.has_next %}
+          <a href="?page={{ page_obj.next_page_number }}">next</a> |
+          <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+          {% endif %}
+        </span>
+      </div>
+    </div>
+    {% endif %}
+    <!--end of Pagination-->
 </section>
 {% endblock %}
