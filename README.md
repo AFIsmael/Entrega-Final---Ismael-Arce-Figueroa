@@ -1,3 +1,12 @@
+## Este proyecto se encuentra desarrollado integramente por mi, **Ismael Arce Figueroa**.
+
+## Se trata de una pagina web utilizada como un blog de Cursos, como entrega de proyecto final del curso de Python en CoderHouse.
+## La misma fue creada a partir de los conocimientos adquiridos en el curso, utilizando varias tecnologias en ella.
+## Como ser Python - Django - html y CSS.  
+
+
+## A continuacion estan las instrucciones para poder clonar el proyecto y poder desplegarlo. Gracias por tu visita. Saludos!!!
+
 # Instrucciones para ejecutar este proyecto
 
 ### Clonar el proyecto
@@ -48,36 +57,6 @@ python manage.py createsuperuser
 ```
 Ingrese `Username`, `Email address` y `Password`  
 
-# Funcionalidades de la pagina
 
-## Buscar un curso 
-
-- En home encontraremos un buscardor del listado de cursos disponible, solo hace falta ingresar alguno de los datos solicitado.
-```bash
-http://127.0.0.1:8000/create_family/<str:name>/<str:last_name>/<int:dni>/<str:date_birth>
-```
-
-
-## visualizar la lista completa de cursos o crear uno nuevo.
-
-- navegar a la pagina  "Courses" en la barra de navegacion del blog
-
-```bash
-http://127.0.0.1:8000/family/relatives
-```
-
-- ahi encontraras la lista completa de cursos, y trendras la posibilidad de crear uno nuevo simplemente clickeando en el boton "NEW COURSE"
-## crear un nuevo Profesor/Entrenador
-
-- navegar a la pagina  "Trainers" en la barra de navegacion del blog.
-
-
-- veras a los Trainers registrados y tendras la posibilidad de registrar un nuevo, simplemente clickeando en el boton "TRAINER REGISTRATION"
-
-## crear un nuevo Estudiante
-
-- navegar a la pagina  "Students" en la barra de navegacion del blog.
-
-- tendras la posibilidad de registrar un nuevo estudiante, simplemente clickeando en el boton "STUDENT REGISTRATION"
 
 
