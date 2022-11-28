@@ -25,21 +25,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### Activar entorno virtual
-(Windows)
-```bash
-.\venv\Scripts\activate
-```
-
-(Linux)
-```bash
-source venv/bin/activate
-```
-
-### Instalar las dependencias del proyecto
-```bash
-pip install -r requirements.txt
-```
 
 ### Se ejecuta la migración para crear la base de datos con la que trabajará nuestro proyecto de Django
 ```bash
